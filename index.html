@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff7fc">
+<meta name="description" content="Money Orbit - Explore buy and sell apps, compare listed commission rates, and find app signup links.">
+<title>Money Orbit | Buy & Sell Apps</title>
+
+<style>
+:root {
+  --ink: #292345;
+  --muted: #716c84;
+  --purple: #7655e8;
+  --pink: #ff78b5;
+  --border: #eee7fa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 5% 8%, #ffe2f0 0, transparent 30%),
+    radial-gradient(ellipse at 95% 22%, #dff5ff 0, transparent 32%),
+    radial-gradient(ellipse at 40% 70%, #eee6ff 0, transparent 36%),
+    #fffafd;
+}
+a { text-decoration: none; }
+button, input { font: inherit; }
+.container { width: min(1120px, 92%); margin: auto; }
+
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,250,253,.90);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #f0e8f5;
+}
+.nav {
+  min-height: 72px; display: flex; align-items: center;
+  justify-content: space-between; gap: 14px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--ink); font-size: 23px; font-weight: 900;
+  letter-spacing: -.8px;
+}
+.logo {
+  width: 43px; height: 43px; border-radius: 15px;
+  display: grid; place-items: center;
+  color: white; font-size: 23px;
+  background: linear-gradient(135deg, #8965f5, #ff83bc);
+  box-shadow: 0 6px 18px #b99bf45c;
+}
+.nav-links { display: flex; align-items: center; gap: 22px; }
+.nav-links a { color: var(--muted); font-size: 14px; font-weight: 700; }
+.telegram {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 11px 17px; border-radius: 13px;
+  color: white; font-size: 14px; font-weight: 800;
+  background: linear-gradient(120deg, #268be8, #6a69ed);
+  box-shadow: 0 6px 16px #7187ed32;
+  transition: transform .2s;
+}
+.telegram:hover, .signup:hover { transform: translateY(-2px); }
+
+.hero { padding: 62px 0 34px; text-align: center; }
+.eyebrow {
+  display: inline-block; padding: 8px 14px; border-radius: 99px;
+  background: #f0e9ff; color: #7150d5;
+  font-weight: 800; font-size: 12px; letter-spacing: 1px;
+}
+h1 {
+  margin: 19px auto 14px; max-width: 760px;
+  font-size: clamp(36px, 6vw, 65px);
+  line-height: 1.08; letter-spacing: -2.5px;
+}
+.gradient-text {
+  background: linear-gradient(100deg, #7956e9, #ee65ae, #ef9a57);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero p {
+  max-width: 620px; margin: 0 auto;
+  color: var(--muted); line-height: 1.8; font-size: 16px;
+}
+.hero-actions {
+  display: flex; justify-content: center; gap: 12px;
+  flex-wrap: wrap; margin-top: 25px;
+}
+.primary, .secondary {
+  display: inline-flex; justify-content: center; align-items: center;
+  padding: 14px 21px; border-radius: 14px;
+  font-weight: 800; font-size: 14px;
+}
+.primary {
+  color: white; background: linear-gradient(120deg, #7956e9, #b16ce9);
+  box-shadow: 0 8px 20px #9473e83b;
+}
+.secondary {
+  color: #7655d9; background: white; border: 1px solid var(--border);
+}
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 13px; margin: 36px auto 0; max-width: 680px;
+}
+.stat {
+  padding: 18px 10px; border: 1px solid #f0e8fa;
+  border-radius: 18px; background: #ffffffc9;
+}
+.stat strong { display: block; font-size: 24px; }
+.stat span { color: var(--muted); font-size: 12px; }
+
+.promo {
+  margin: 22px 0 42px; padding: 22px 25px;
+  border-radius: 23px; display: flex; align-items: center;
+  justify-content: space-between; gap: 18px; flex-wrap: wrap;
+  background: linear-gradient(110deg, #e9e3ff, #ffe8f3 55%, #e1f6ff);
+  border: 1px solid #eee3ff;
+}
+.promo h2 { margin: 0 0 7px; font-size: 20px; }
+.promo p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+.section-head {
+  display: flex; justify-content: space-between; align-items: end;
+  gap: 15px; flex-wrap: wrap; margin-bottom: 21px;
+}
+.section-head h2 { margin: 0 0 7px; font-size: clamp(25px, 4vw, 34px); }
+.section-head p { margin: 0; color: var(--muted); font-size: 14px; }
+.search-wrap { width: min(100%, 340px); position: relative; }
+.search-wrap input {
+  width: 100%; padding: 14px 16px 14px 43px;
+  border: 1px solid #e8def5; border-radius: 14px;
+  background: #fff; outline: none; color: var(--ink);
+  box-shadow: 0 4px 15px #8e6bc70b;
+}
+.search-wrap input:focus {
+  border-color: #a38bf0; box-shadow: 0 0 0 3px #a38bf01c;
+}
+.search-icon { position: absolute; left: 15px; top: 12px; font-size: 18px; }
+
+.app-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.app-card {
+  --tint: #f0e9ff;
+  position: relative; padding: 21px; border-radius: 22px;
+  background: #ffffffd9; border: 1px solid #eee7f5;
+  box-shadow: 0 7px 25px #6f4a9b0a;
+  transition: transform .22s, box-shadow .22s;
+  overflow: hidden;
+}
+.app-card::before {
+  content: ""; position: absolute; width: 100px; height: 100px;
+  border-radius: 50%; background: var(--tint);
+  right: -38px; top: -42px; opacity: .7;
+}
+.app-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px #6f4a9b17;
+}
+.card-top {
+  position: relative; display: flex; align-items: center;
+  justify-content: space-between; gap: 8px;
+}
+.app-identity { display: flex; align-items: center; gap: 12px; }
+.app-icon {
+  width: 47px; height: 47px; border-radius: 15px;
+  background: var(--tint); display: grid; place-items: center;
+  font-size: 23px; flex-shrink: 0;
+}
+.app-name { font-size: 17px; font-weight: 850; }
+.app-sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.rank {
+  font-size: 10px; font-weight: 800; color: #8064c8;
+  background: #f4efff; padding: 6px 8px; border-radius: 99px;
+}
+.commission {
+  margin: 22px 0 17px; padding: 15px;
+  border-radius: 15px; background: var(--tint);
+}
+.commission-label {
+  font-size: 11px; color: #686078; font-weight: 700;
+}
+.commission-value {
+  margin-top: 5px; font-size: 29px; font-weight: 900;
+  letter-spacing: -.7px; color: #39304f;
+}
+.card-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; flex-wrap: wrap;
+}
+.rate-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.signup {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 5px; border-radius: 12px; padding: 11px 15px;
+  background: linear-gradient(120deg, #7956e9, #ac6de9);
+  color: white; font-weight: 800; font-size: 12px;
+  transition: transform .2s;
+}
+.empty {
+  display: none; text-align: center; padding: 35px;
+  color: var(--muted); background: white; border-radius: 18px;
+}
+.disclaimer {
+  margin: 35px 0; padding: 18px 20px;
+  background: #fff6e8; border: 1px solid #ffebcc;
+  color: #745c3c; border-radius: 16px;
+  font-size: 12px; line-height: 1.8;
+}
+.join-section {
+  margin: 46px 0; text-align: center; padding: 35px 20px;
+  border: 1px solid #e9e0ff; border-radius: 26px;
+  background: linear-gradient(120deg, #eee8ff, #ffeaf4, #e4f7ff);
+}
+.join-section h2 { font-size: 29px; margin: 0 0 10px; }
+.join-section p {
+  max-width: 520px; margin: 0 auto 21px;
+  line-height: 1.8; font-size: 14px; color: var(--muted);
+}
+footer {
+  border-top: 1px solid #eee5f4;
+  padding: 27px 0 35px; background: #ffffff9c;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 18px; flex-wrap: wrap;
+}
+.footer-copy { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; font-weight: 700; color: #7153ce; }
+@media (max-width: 850px) {
+  .app-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav-links { gap: 12px; }
+}
+@media (max-width: 560px) {
+  .nav { min-height: 64px; }
+  .brand { font-size: 20px; }
+  .logo { width: 38px; height: 38px; }
+  .nav-links a:not(.telegram) { display: none; }
+  .telegram { padding: 10px 12px; font-size: 12px; }
+  .hero { padding-top: 44px; }
+  h1 { letter-spacing: -1.5px; }
+  .hero p { font-size: 14px; }
+  .stats { gap: 8px; }
+  .stat strong { font-size: 20px; }
+  .stat span { font-size: 10px; }
+  .app-grid { grid-template-columns: 1fr; gap: 13px; }
+  .app-card { padding: 19px; }
+  .section-head { align-items: stretch; }
+  .search-wrap { width: 100%; }
+  .promo { padding: 20px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#" aria-label="Money Orbit home">
+      <span class="logo">✦</span> Money Orbit
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#apps">Explore Apps</a>
+      <a href="#about">About</a>
+      <a class="telegram" href="https://t.me/viratmoneyzone"
+         target="_blank" rel="noopener noreferrer">✈ Telegram</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <span class="eyebrow">✦ YOUR APP DISCOVERY HUB</span>
+    <h1>Explore Apps.<br><span class="gradient-text">Compare Commission.</span></h1>
+    <p>
+      Discover buy & sell apps in one place. Compare their listed
+      commission rates and visit each app's signup page.
+      Always check the terms before depositing money.
+    </p>
+    <div class="hero-actions">
+      <a class="primary" href="#apps">Explore All Apps ↗</a>
+      <a class="secondary" href="https://t.me/viratmoneyzone"
+         target="_blank" rel="noopener noreferrer">Join Telegram ✈</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="appCount">18</strong><span>Listed Apps</span></div>
+      <div class="stat"><strong>Easy</strong><span>App Discovery</span></div>
+      <div class="stat"><strong>One Place</strong><span>Quick Comparison</span></div>
+    </div>
+  </section>
+
+  <section class="promo">
+    <div>
+      <h2>💜 Stay Connected with Money Orbit</h2>
+      <p>Get app updates and announcements through our Telegram channel.</p>
+    </div>
+    <a class="telegram" href="https://t.me/viratmoneyzone"
+       target="_blank" rel="noopener noreferrer">Join Our Channel ↗</a>
+  </section>
+
+  <section id="apps">
+    <div class="section-head">
+      <div>
+        <h2>Explore Buy & Sell Apps</h2>
+        <p>Search by app name and compare the listed rates.</p>
+      </div>
+      <label class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="search" type="search"
+          placeholder="Search apps..." aria-label="Search apps">
+      </label>
+    </div>
+    <div class="app-grid" id="appGrid"></div>
+    <div class="empty" id="empty">No apps found. Try another name.</div>
+  </section>
+
+  <aside class="disclaimer">
+    <strong>⚠ Important Disclaimer</strong><br>
+    Commission rates displayed here are provided for informational
+    purposes and have not been independently verified. Actual rates,
+    fees, eligibility, withdrawal conditions and app availability may
+    change. Commission is not guaranteed income. Research each platform
+    independently before signing up or transferring money. Money Orbit
+    is not responsible for losses, failed withdrawals or third-party
+    platform actions. Signup links may be referral links.
+  </aside>
+
+  <section class="join-section" id="about">
+    <h2>🚀 Join the Money Orbit Community</h2>
+    <p>
+      Follow our Telegram channel for updates, announcements and
+      information about the apps listed on this website.
+    </p>
+    <a class="telegram" href="https://t.me/viratmoneyzone"
+       target="_blank" rel="noopener noreferrer">✈ Join @viratmoneyzone</a>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <a class="brand" href="#"><span class="logo">✦</span> Money Orbit</a>
+      <div class="footer-copy">App discovery made simple.</div>
+      <div class="footer-copy">© <span id="year"></span> Money Orbit. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#apps">Explore Apps</a>
+      <a href="https://t.me/viratmoneyzone" target="_blank"
+         rel="noopener noreferrer">Telegram Community</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const apps = [
+  {name:"Alpha Pay", rate:"3.5%", url:"https://alphad.net/#/?invite=N3edlC", icon:"🟣", tint:"#eee7ff"},
+  {name:"Uonopay", rate:"3.6%", url:"https://appdow.x8mira.com/#/?invite=FDzGer", icon:"🔵", tint:"#e3f1ff"},
+  {name:"Shakti Pay", rate:"3.6%", url:"https://shaktipay.app/#/?invite=q3pIs2", icon:"🌸", tint:"#ffe8f2"},
+  {name:"EZpay", rate:"3.3% + 6", url:"https://invite.ezpayinvite1.com/memberRegister?inviteCodeType=1&inviteCode=u0musyjy", icon:"⚡", tint:"#fff0d9"},
+  {name:"Umoney", rate:"3.2%", url:"https://s-app.ink/1MIX", icon:"💜", tint:"#eee7ff"},
+  {name:"IMoney", rate:"3.2%", url:"https://s-app.ink/1ScN", icon:"💎", tint:"#e3f5ff"},
+  {name:"JD PAY", rate:"3.7% + 6", url:"https://jdpay88888886.com/#/?invite=fFJA0s", icon:"🟠", tint:"#fff0df"},
+  {name:"DD PAY", rate:"4.5%", url:"https://dd-pay.net/#/?invite=BLJp0p", icon:"🔥", tint:"#ffe7e5"},
+  {name:"Sprodeal", rate:"3.3% + 6", url:"https://invite.ukpayhub.com/memberRegister?inviteCodeType=1&inviteCode=a2kajbdx", icon:"🛍️", tint:"#e3f8ed"},
+  {name:"WYwallet Pay", rate:"4%", url:"https://wydowx8.com/#/?invite=78CEOu", icon:"👛", tint:"#fce8f3"},
+  {name:"OKPay", rate:"4.2%", url:"http://okpay365.win/#/?invite=RMKxD5", icon:"🟢", tint:"#e5f8e9"},
+  {name:"Link Pay", rate:"4%", url:"https://install.vlinkapp.net/#/?invite=LEDqgM", icon:"🔗", tint:"#e5efff"},
+  {name:"JPG Pay", rate:"4.2%", url:"https://jpgpay.top/#/?invite=ZiPNNN", icon:"🟪", tint:"#eee7ff"},
+  {name:"I Pay", rate:"4% + 3", url:"https://share.ipaynow.net/?data=dWlkPTUzODQ4OCZjaGFubmVsPTEwMDEmYnVzaW5lc3NfaWQ9OTAwMDA2", icon:"💠", tint:"#e1f5ff"},
+  {name:"DiwaPay", rate:"4%", url:"https://down.v7nexa.net/#/?invite=8NY8WD", icon:"🌷", tint:"#ffe7f1"},
+  {name:"Comepay", rate:"4%", url:"https://comeappdown.com/#/?invite=f75VFs", icon:"💫", tint:"#fff0d9"},
+  {name:"Vivi Pay", rate:"4.2%", url:"https://vivicashback.com/#/rs/G2qtg2fq57", icon:"🦋", tint:"#e3f8f2"},
+  {name:"SB Pay", rate:"4%", url:"https://sbdownload.top/#/rs/KJGclBiGBW", icon:"⭐", tint:"#fff1d8"}
+];
+
+const grid = document.getElementById("appGrid");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+
+function renderApps() {
+  const term = search.value.trim().toLowerCase();
+  const filtered = apps.filter(app =>
+    app.name.toLowerCase().includes(term) ||
+    app.rate.toLowerCase().includes(term)
+  );
+
+  grid.innerHTML = filtered.map((app, index) => `
+    <article class="app-card" style="--tint:${app.tint}">
+      <div class="card-top">
+        <div class="app-identity">
+          <div class="app-icon" aria-hidden="true">${app.icon}</div>
+          <div>
+            <div class="app-name">${app.name}</div>
+            <div class="app-sub">Buy &amp; Sell App</div>
+          </div>
+        </div>
+        <span class="rank">APP ${String(index + 1).padStart(2,"0")}</span>
+      </div>
+      <div class="commission">
+        <div class="commission-label">LISTED COMMISSION RATE</div>
+        <div class="commission-value">${app.rate}</div>
+      </div>
+      <div class="card-bottom">
+        <span class="rate-note">Check current terms<br>before signing up</span>
+        <a class="signup" href="${app.url}" target="_blank"
+           rel="noopener noreferrer">Sign Up ↗</a>
+      </div>
+    </article>
+  `).join("");
+
+  empty.style.display = filtered.length ? "none" : "block";
+  document.getElementById("appCount").textContent = apps.length;
+}
+
+search.addEventListener("input", renderApps);
+document.getElementById("year").textContent = new Date().getFullYear();
+renderApps();
+</script>
+</body>
+</html>
